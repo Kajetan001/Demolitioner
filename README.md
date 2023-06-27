@@ -30,4 +30,6 @@ Controls:
     Other:
     
         H - hide UI
+
+        ESC - leave text box or exit to menu
  

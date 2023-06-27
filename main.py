@@ -42,6 +42,9 @@ while running:
             character.restart(main_env.restart(keys, True))
             game_state = state
 
+        if title.exitToMenu(keys):
+            game_state = 'title'
+
     elif game_state == 'gameplay':
         character.restart(main_env.restart(keys))
         
@@ -56,16 +59,23 @@ while running:
         main_env.setAmmo(character.getAmmo())
         
         if character.checkVictory(): game_state = 'win'
+
+        if main_env.exitToMenu(keys):
+            game_state = 'title'
+            title.setLevelName('default')
         
     elif game_state == 'editor':
         editor_env.render(sound_on, keys)
         editor_env.handleButtons(mouse_pos, mouse)
 
+        if editor_env.exitToMenu(keys):
+            game_state = 'title'
+
     elif game_state == 'win':
         title.render(True)
+        if title.exitToMenu(keys):
+            game_state = 'title'
 
-    exit = editor_env.exitToMenu(keys)
-    if exit: game_state = exit
     
     pygame.display.update()
     clock.tick(120)

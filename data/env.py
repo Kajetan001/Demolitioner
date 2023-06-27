@@ -327,7 +327,11 @@ class Environment():
             self.esc_pressed = True
         elif self.esc_pressed:
             self.esc_pressed = False
-            return 'title'
+            self.level_name = 'default'
+            if self.show_text_box:
+                self.show_text_box = False
+            else:
+                return 'title'
         return ''
     
     def hideUi(self, keys): 
@@ -369,10 +373,11 @@ class Environment():
     
     def Type(self, box):
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.type == pygame.QUIT or event.key == pygame.K_ESCAPE:
-                    self.show_text_box = False
-                    self.level_name = 'default'
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pass
                 elif event.key == pygame.K_RETURN:
                     self.show_text_box = False
                     return True

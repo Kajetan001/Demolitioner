@@ -17,8 +17,7 @@ character = char.Character(main_env.getStartPoint(), screen)
 
 theme = pygame.mixer.music.load('data/sounds/theme.mp3')
 sound_on = True
-pygame.mixer.music.set_volume(0)
-#pygame.mixer.music.set_volume(0.05)
+pygame.mixer.music.set_volume(0) #set to positive value to hear placeholder music
 pygame.mixer.music.play(-1)
 
 while running:
@@ -76,7 +75,6 @@ while running:
         if title.exitToMenu(keys):
             game_state = 'title'
 
-    
     pygame.display.update()
     clock.tick(120)
 
